@@ -1,4 +1,4 @@
 jdk:
   - openjdk17
 install:
-  - ./gradlew :dropdashwalletsdk:publishToMavenLocal -Pgroup=com.github.Sigdel-Vijay -Pversion=1.0.0
+  - ./gradlew :dropdashwalletsdk:publishToMavenLocal
