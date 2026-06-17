@@ -20,6 +20,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "DropDash Wallet"
+rootProject.name = "DropDashWallet"
 include ':app'
 include ':dropdashwalletsdk'
