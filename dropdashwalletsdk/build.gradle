@@ -20,17 +20,14 @@ android {
             minifyEnabled false
         }
     }
-
-    publishing {
-        singleVariant("release")
-    }
 }
 
 afterEvaluate {
     publishing {
         publications {
             release(MavenPublication) {
-                from components.release
+
+                from components.findByName("release")
 
                 groupId = "com.github.Sigdel-Vijay"
                 artifactId = "dropdashwalletsdk"
