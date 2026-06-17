@@ -26,15 +26,15 @@ android {
     }
 }
 
-publishing {
-    publications {
-        register("release", MavenPublication) {
-            groupId = "com.github.Sigdel-Vijay"
-            artifactId = "dropdashwalletsdk"
-            version = "1.0.0"
-
-            afterEvaluate {
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
                 from components.release
+
+                groupId = "com.github.Sigdel-Vijay"
+                artifactId = "dropdashwalletsdk"
+                version = "1.0.0"
             }
         }
     }
