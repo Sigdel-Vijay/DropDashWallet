@@ -3,6 +3,8 @@ package com.devroid.dropdashwalletsdk;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.text.InputType;
 import android.view.MotionEvent;
 import android.view.View;
@@ -15,8 +17,12 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.NetworkError;
+import com.android.volley.NoConnectionError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.android.volley.TimeoutError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.button.MaterialButton;
@@ -29,8 +35,12 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.UUID;
 
 public class PaymentGatewayActivity extends AppCompatActivity {
+
+    private static final String RAILWAY_URL = "https://payment-callback-backend-production.up.railway.app/pay";
+    private static final String RENDER_URL = "https://payment-callback-backend.onrender.com/pay";
 
     TextView totalAmount, productAmount, chargeAmount, deliveryAmount, totalPayingAmount;
     TextInputEditText etWalletId, etPasswordMpin;
@@ -39,6 +49,13 @@ public class PaymentGatewayActivity extends AppCompatActivity {
     MaterialButton btnWalletLogin;
     LinearLayout chargeAmountContainer, deliveryAmountContainer;
     ProgressBar progressBar;
+
+    private boolean isRequestRunning = false;
+    private int retryCount = 0;
+    private static final int MAX_RETRIES = 3;
+    private final Handler retryHandler = new Handler(Looper.getMainLooper());
+    private String currentClientTxnId;
+    private RequestQueue requestQueue;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -61,6 +78,8 @@ public class PaymentGatewayActivity extends AppCompatActivity {
         btnWalletLogin = findViewById(R.id.btnWalletLogin);
 
         progressBar = findViewById(R.id.progressBar);
+
+        requestQueue = Volley.newRequestQueue(getApplicationContext());
 
         // Default = hidden password
         etPasswordMpin.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
@@ -132,8 +151,6 @@ public class PaymentGatewayActivity extends AppCompatActivity {
 
         // Login & Pay
         btnWalletLogin.setOnClickListener(v -> {
-            btnWalletLogin.setEnabled(false);
-            progressBar.setVisibility(View.VISIBLE);
             String walletId = etWalletId.getText().toString().trim();
             String mpin = etPasswordMpin.getText().toString().trim();
 
@@ -153,7 +170,8 @@ public class PaymentGatewayActivity extends AppCompatActivity {
             }
 
             // Valid → call server
-            sendPaymentToServer(walletId, mpin);
+            currentClientTxnId = UUID.randomUUID().toString();
+            sendPaymentToServer(walletId, mpin, currentClientTxnId);
         });
     }
 
@@ -162,33 +180,42 @@ public class PaymentGatewayActivity extends AppCompatActivity {
         btnWalletLogin.setEnabled(true);
     }
 
-    private void sendPaymentToServer(String walletId, String mpin) {
-        // Disable button immediately to prevent double tap
-        btnWalletLogin.setEnabled(false);
-        progressBar.setVisibility(View.VISIBLE);
-        btnWalletLogin.setText("Processing...");
+    private void sendPaymentToServer(String walletId, String mpin, String clientTxnId) {
+        sendPaymentRequest(RAILWAY_URL, walletId, mpin, clientTxnId, true);
+    }
 
-        String url = "https://payment-callback-backend.onrender.com/pay";
-        int amount = Integer.parseInt(totalPayingAmount.getText().toString());
+    private void sendPaymentRequest(String url, String walletId, String mpin, String clientTxnId, boolean allowFallback) {
+        if (isRequestRunning) {
+            return;
+        }
 
-        // Generate a unique client-side transaction ID
-        String clientTxnId = java.util.UUID.randomUUID().toString();
+        isRequestRunning = true;
+        setLoadingState(true);
+
+        double amount;
+        try {
+            amount = Double.parseDouble(totalPayingAmount.getText().toString());
+        } catch (Exception e) {
+            Toast.makeText(this, "Invalid amount", Toast.LENGTH_SHORT).show();
+            resetPaymentState();
+            return;
+        }
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user == null) {
             Toast.makeText(this, "User not logged in", Toast.LENGTH_SHORT).show();
-            progressBar.setVisibility(View.GONE);
-            btnWalletLogin.setEnabled(true);
-            btnWalletLogin.setText("Login & Pay");
+            resetPaymentState();
             return;
         }
 
         user.getIdToken(true).addOnCompleteListener(task -> {
+            if (!isActivitySafe()) {
+                return;
+            }
+
             if (!task.isSuccessful()) {
-                Toast.makeText(this, "Failed to get Firebase ID token", Toast.LENGTH_SHORT).show();
-                progressBar.setVisibility(View.GONE);
-                btnWalletLogin.setEnabled(true);
-                btnWalletLogin.setText("Login & Pay");
+                Toast.makeText(this, "Authentication failed", Toast.LENGTH_SHORT).show();
+                resetPaymentState();
                 return;
             }
 
@@ -201,22 +228,19 @@ public class PaymentGatewayActivity extends AppCompatActivity {
                 jsonBody.put("mpin", mpin);
                 jsonBody.put("merchantId", getIntent().getStringExtra("merchantId"));
                 jsonBody.put("orderId", getIntent().getStringExtra("orderId"));
-                jsonBody.put("amount", amount);
-                jsonBody.put("clientTxnId", clientTxnId); // <-- safe idempotency
+                jsonBody.put("amount", String.valueOf(amount));
+                jsonBody.put("clientTxnId", clientTxnId);
             } catch (Exception e) {
                 e.printStackTrace();
-                progressBar.setVisibility(View.GONE);
-                btnWalletLogin.setEnabled(true);
-                btnWalletLogin.setText("Login & Pay");
+                resetPaymentState();
                 return;
             }
 
-            RequestQueue queue = Volley.newRequestQueue(this);
             JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, jsonBody,
                     response -> {
-                        progressBar.setVisibility(View.GONE);
-                        btnWalletLogin.setEnabled(true);
-                        btnWalletLogin.setText("Login & Pay");
+                        if (!isActivitySafe()) return;
+                        retryCount = 0;
+                        resetPaymentState();
 
                         try {
                             String status = response.getString("status");
@@ -224,38 +248,42 @@ public class PaymentGatewayActivity extends AppCompatActivity {
                                 showResultDialog(true, response.getString("transactionId"), null);
                             } else {
                                 String error = response.optString("error", "Payment Failed");
-                                String stack = response.optString("stack", "");
-                                showResultDialog(false, null, error + (stack.isEmpty() ? "" : "\nCause: " + stack));
+                                showResultDialog(false, null, error);
                             }
                         } catch (Exception e) {
-                            showResultDialog(false, null, "Unexpected server error: " + e.getMessage());
+                            showResultDialog(false, null, "Server error: " + e.getMessage());
                         }
                     },
                     error -> {
-                        progressBar.setVisibility(View.GONE);
-                        btnWalletLogin.setEnabled(true);
-                        btnWalletLogin.setText("Login & Pay");
+                        if (!isActivitySafe()) return;
 
-                        String errorMsg = "Server error. Please try again";
+                        // Railway failed -> switch to Render
+                        if (allowFallback && url.contains("railway.app")) {
+                            isRequestRunning = false;
+                            Toast.makeText(this, "Railway unavailable. Switching server...", Toast.LENGTH_SHORT).show();
+                            sendPaymentRequest(RENDER_URL, walletId, mpin, clientTxnId, false);
+                            return;
+                        }
 
-                        if (error.networkResponse != null && error.networkResponse.data != null) {
-                            try {
-                                String responseBody = new String(error.networkResponse.data, "UTF-8");
-                                JSONObject data = new JSONObject(responseBody);
-                                String serverError = data.optString("error", null);
-                                String stack = data.optString("stack", null);
-                                if (serverError != null) {
-                                    errorMsg = serverError;
-                                    if (stack != null && !stack.isEmpty()) {
-                                        errorMsg += "\nCause: " + stack;
+                        // Handle Render cold start (Waking server)
+                        if (error instanceof TimeoutError || error instanceof NoConnectionError || error instanceof NetworkError) {
+                            if (retryCount < MAX_RETRIES) {
+                                retryCount++;
+                                isRequestRunning = false;
+                                Toast.makeText(this, "Waking secure server... (" + retryCount + "/" + MAX_RETRIES + ")", Toast.LENGTH_SHORT).show();
+                                
+                                retryHandler.postDelayed(() -> {
+                                    if (isActivitySafe()) {
+                                        sendPaymentToServer(walletId, mpin, clientTxnId);
                                     }
-                                }
-                            } catch (Exception e) {
-                                e.printStackTrace();
+                                }, 4000);
+                                return;
                             }
                         }
 
-                        showResultDialog(false, null, errorMsg);
+                        retryCount = 0;
+                        resetPaymentState();
+                        showResultDialog(false, null, getVolleyErrorMessage(error));
                     }) {
                 @Override
                 public Map<String, String> getHeaders() {
@@ -265,9 +293,48 @@ public class PaymentGatewayActivity extends AppCompatActivity {
                 }
             };
 
-            // Add request to queue
-            queue.add(request);
+            request.setRetryPolicy(new DefaultRetryPolicy(25000, 0, 1f));
+            requestQueue.add(request);
         });
+    }
+
+    private String getVolleyErrorMessage(com.android.volley.VolleyError error) {
+        try {
+            if (error.networkResponse != null && error.networkResponse.data != null) {
+                String responseBody = new String(error.networkResponse.data, "UTF-8");
+                JSONObject data = new JSONObject(responseBody);
+                return data.optString("error", "Payment Failed");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (error instanceof TimeoutError) return "Server timeout. Please try again.";
+        if (error instanceof NoConnectionError) return "No internet connection.";
+        return "Payment failed. Please try again.";
+    }
+
+    private void resetPaymentState() {
+        isRequestRunning = false;
+        setLoadingState(false);
+    }
+
+    private void setLoadingState(boolean loading) {
+        btnWalletLogin.setEnabled(!loading);
+        progressBar.setVisibility(loading ? View.VISIBLE : View.GONE);
+        btnWalletLogin.setText(loading ? "Processing..." : "Login & Pay");
+    }
+
+    private boolean isActivitySafe() {
+        return !(isFinishing() || isDestroyed());
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (requestQueue != null) {
+            requestQueue.cancelAll(this);
+        }
+        retryHandler.removeCallbacksAndMessages(null);
     }
 
     private void showResultDialog(boolean success, String txnId, String errorMessage) {

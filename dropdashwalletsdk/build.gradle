@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "com.github.Sigdel-Vijay"
-version = "1.0.1"
+version = "1.0.2"
 
 android {
     namespace 'com.devroid.dropdashwalletsdk'
@@ -33,7 +33,7 @@ afterEvaluate {
                 from components.release
                 groupId = "com.github.Sigdel-Vijay"
                 artifactId = "dropdashwalletsdk"
-                version = "1.0.1"
+                version = "1.0.2"
             }
         }
     }
