@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_home"
+        android:icon="@drawable/home"
+        android:title="Home" />
+
+    <item
+        android:id="@+id/nav_statement"
+        android:icon="@drawable/statement"
+        android:title="Statement" />
+
+    <item
+        android:title="Scan"
+        android:enabled="false"/>
+
+    <item
+        android:id="@+id/nav_my_payment"
+        android:icon="@drawable/my_payment"
+        android:title="My Payments" />
+
+    <item
+        android:id="@+id/nav_support"
+        android:icon="@drawable/support"
+        android:title="Support" />
+
+</menu>

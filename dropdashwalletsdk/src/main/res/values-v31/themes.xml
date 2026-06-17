@@ -1,0 +1,37 @@
+<resources>
+
+    <!-- SDK Main Theme -->
+    <style name="DropDashWalletTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- App colors -->
+        <item name="colorPrimary">@color/dd_wallet_primary</item>
+        <item name="colorPrimaryVariant">@color/dd_wallet_primary_variant</item>
+        <item name="colorAccent">@color/dd_wallet_accent</item>
+        <item name="android:colorBackground">@color/dd_wallet_bg</item>
+        <item name="android:textColor">@color/dd_wallet_text</item>
+
+        <!-- Material Components overrides -->
+        <item name="textInputStyle">@style/DropDashWalletTextInputStyle</item>
+        <item name="materialButtonStyle">@style/DropDashWalletButton</item>
+    </style>
+
+    <!-- TextInputLayout style -->
+    <style name="DropDashWalletTextInputStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxBackgroundColor">@color/dd_wallet_input_bg</item>
+        <item name="boxStrokeColor">@color/dd_wallet_stroke</item>
+        <item name="boxStrokeWidth">2dp</item>
+        <item name="boxStrokeWidthFocused">4dp</item>
+        <item name="boxStrokeErrorColor">@color/dd_wallet_error</item>
+        <item name="boxCornerRadiusTopStart">8dp</item>
+        <item name="boxCornerRadiusTopEnd">8dp</item>
+        <item name="boxCornerRadiusBottomStart">8dp</item>
+        <item name="boxCornerRadiusBottomEnd">8dp</item>
+    </style>
+
+    <!-- Material Button style -->
+    <style name="DropDashWalletButton" parent="Widget.MaterialComponents.Button">
+        <item name="android:backgroundTint">@color/dd_wallet_primary</item>
+        <item name="android:textColor">@color/dd_wallet_button_text</item>
+        <item name="cornerRadius">8dp</item>
+    </style>
+
+</resources>

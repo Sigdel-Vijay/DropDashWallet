@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".OtpVerificationActivity"
+    android:background="@color/screen_background">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@drawable/curved_bg">
+
+            <ImageButton
+                android:id="@+id/btnBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/arrow"
+                android:background="@android:color/transparent"
+                app:tint="@color/white"
+                android:layout_margin="10dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_margin="10dp"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/wallet_logo"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="DropDash Wallet"
+                    android:textColor="@color/on_primary"
+                    android:textStyle="bold"
+                    android:textSize="28sp"
+                    android:layout_margin="10dp"
+                    android:fontFamily="sans-serif-black"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="10dp">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                app:boxBackgroundMode="outline"
+                app:boxStrokeColor="@color/input_stroke"
+                app:boxStrokeWidth="2dp"
+                app:boxStrokeErrorColor="@color/danger"
+                app:boxStrokeWidthFocused="4dp"
+                app:boxCornerRadiusTopStart="8dp"
+                app:boxCornerRadiusTopEnd="8dp"
+                app:boxCornerRadiusBottomStart="8dp"
+                app:boxCornerRadiusBottomEnd="8dp"
+                android:hint="OTP CODE"
+                app:hintTextColor="@color/text_secondary"
+                app:startIconTint="@color/icon_tint">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etOtpCode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:textColor="@color/text_primary"
+                    android:textSize="20sp"
+                    android:drawableStart="@drawable/otp"
+                    android:drawablePadding="10dp"
+                    android:textStyle="bold"
+                    android:drawableTint="@color/app_primary"
+                    android:background="@drawable/gray_bg" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnConfirmOtp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginTop="30dp"
+                android:text="CONFIRM"
+                android:textSize="16sp"
+                android:textColor="@color/on_primary"
+                android:textStyle="bold"
+                android:fontFamily="sans-serif-black"
+                android:background="@drawable/gray_bg"
+                app:backgroundTint="@color/app_primary"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

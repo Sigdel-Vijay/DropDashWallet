@@ -1,0 +1,63 @@
+plugins {
+    id 'com.android.library'
+    id 'maven-publish'
+}
+
+group = "com.github.Sigdel-Vijay"
+version = "1.0.0"
+
+android {
+    namespace 'com.devroid.dropdashwalletsdk'
+    compileSdk 36
+
+    defaultConfig {
+        minSdk 30
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
+    }
+
+    publishing {
+        singleVariant("release")
+    }
+}
+
+publishing {
+    publications {
+        register("release", MavenPublication) {
+            groupId = "com.github.Sigdel-Vijay"
+            artifactId = "dropdashwalletsdk"
+            version = "1.0.0"
+
+            afterEvaluate {
+                from components.release
+            }
+        }
+    }
+}
+
+dependencies {
+
+    implementation libs.appcompat
+    implementation libs.material
+    implementation libs.activity
+    implementation libs.constraintlayout
+    testImplementation libs.junit
+    androidTestImplementation libs.ext.junit
+    androidTestImplementation libs.espresso.core
+    implementation libs.play.services.safetynet
+    implementation libs.okhttp
+    implementation libs.volley
+    implementation(libs.firebase.bom)
+
+    // Add the dependencies for desired Firebase products
+    // No version numbers are needed when using the BoM
+    implementation(libs.google.firebase.analytics)
+    implementation(libs.firebase.auth)
+    implementation(libs.firebase.database)
+
+}

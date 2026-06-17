@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".PaymentGatewayActivity"
+    android:background="@color/dd_wallet_bg">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_margin="10dp">
+
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/wallet_logo"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="D-Pay"
+            android:textColor="#000"
+            android:textStyle="bold"
+            android:textSize="30dp"
+            android:layout_margin="10dp"
+            android:fontFamily="sans-serif-black"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Total Amount"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:fontFamily="sans-serif-black"
+            android:textColor="@color/dd_wallet_text"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="NPR"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:fontFamily="sans-serif"
+                android:textColor="@color/dd_wallet_primary_variant"/>
+
+            <TextView
+                android:id="@+id/totalAmount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1010.00"
+                android:textStyle="bold"
+                android:textSize="26sp"
+                android:fontFamily="sans-serif"
+                android:layout_marginStart="4dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:paddingTop="10dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Product Amount"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:fontFamily="sans-serif"
+                android:textColor="@color/dd_wallet_text"/>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:id="@+id/productAmount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1000.00"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:fontFamily="sans-serif"
+                android:layout_marginStart="4dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/chargeAmountContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Charge"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:fontFamily="sans-serif"
+                android:textColor="@color/dd_wallet_text"/>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:id="@+id/chargeAmount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10.00"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:fontFamily="sans-serif"
+                android:layout_marginStart="4dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/deliveryAmountContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="10dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Delivery Charge"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:fontFamily="sans-serif"
+                android:textColor="@color/dd_wallet_text"/>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:id="@+id/deliveryAmount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10.00"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:fontFamily="sans-serif"
+                android:layout_marginStart="4dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="10dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Total Amount"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:fontFamily="sans-serif"
+                android:textColor="@color/dd_wallet_text"/>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:id="@+id/totalPayingAmount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1010.00"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:fontFamily="sans-serif"
+                android:layout_marginStart="4dp"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/mobileLoginContainer"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pay with D-Pay"
+            android:textStyle="bold"
+            android:textSize="26sp"
+            android:layout_margin="10dp"
+            android:textColor="#0B8011"
+            android:fontFamily="sans-serif"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:boxBackgroundMode="outline"
+            app:boxStrokeColor="#888888"
+            app:boxStrokeWidth="2dp"
+            app:boxStrokeErrorColor="#E00C0C"
+            app:boxStrokeWidthFocused="4dp"
+            app:boxCornerRadiusTopStart="8dp"
+            app:boxCornerRadiusTopEnd="8dp"
+            app:boxCornerRadiusBottomStart="8dp"
+            app:boxCornerRadiusBottomEnd="8dp"
+            android:layout_margin="10dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etWalletId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text|textEmailAddress"
+                android:textColor="#000"
+                android:textSize="20sp"
+                android:drawableStart="@drawable/user"
+                android:drawablePadding="10dp"
+                android:hint="D-Wallet ID"
+                android:textStyle="bold" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:boxBackgroundMode="outline"
+            app:boxStrokeColor="#888888"
+            app:boxStrokeWidth="2dp"
+            app:boxStrokeErrorColor="#E00C0C"
+            app:boxStrokeWidthFocused="4dp"
+            app:boxCornerRadiusTopStart="8dp"
+            app:boxCornerRadiusTopEnd="8dp"
+            app:boxCornerRadiusBottomStart="8dp"
+            app:boxCornerRadiusBottomEnd="8dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            app:endIconMode="password_toggle">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etPasswordMpin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:textColor="#000"
+                android:textSize="20sp"
+                android:drawableStart="@drawable/otp"
+                android:drawablePadding="10dp"
+                android:hint="Password/MPIN"
+                android:textStyle="bold"
+                android:drawableTint="#000"
+                android:drawableEnd="@drawable/hide"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginTop="16dp"
+        android:id="@+id/captchaContainer">
+
+        <CheckBox
+            android:id="@+id/captchaCheckBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="false"
+            android:focusable="false"/>
+
+        <TextView
+            android:id="@+id/captchaText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="I’m not a robot"
+            android:textSize="20sp"
+            android:textColor="#000"
+            android:textStyle="bold"
+            android:layout_marginStart="8dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="10dp"
+        android:gravity="center_vertical">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnWalletLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="LOGIN"
+            android:textSize="16sp"
+            android:textColor="#fff"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif-black"
+            android:background="@drawable/gray_bg"
+            android:backgroundTint="@color/dd_wallet_primary_variant"/>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:visibility="gone"
+            style="?android:attr/progressBarStyleSmall"
+            android:indeterminate="true"/>
+    </LinearLayout>
+
+
+
+</LinearLayout>

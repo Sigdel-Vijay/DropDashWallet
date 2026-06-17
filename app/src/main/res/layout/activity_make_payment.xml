@@ -1,0 +1,741 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/screen_background"
+    android:orientation="vertical"
+    tools:context=".MakePaymentActivity">
+
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bottom_curved_bg">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:layout_marginTop="15dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="10dp">
+
+                            <ImageButton
+                                android:id="@+id/btnBack"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="5dp"
+                                android:background="@android:color/transparent"
+                                android:padding="5dp"
+                                android:src="@drawable/arrow"
+                                app:tint="@color/white" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="25dp"
+                                android:fontFamily="sans-serif-black"
+                                android:text="Send Money"
+                                android:textColor="@color/white"
+                                android:textSize="20sp"
+                                android:textStyle="bold"/>
+                        </LinearLayout>
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="60dp"
+                        android:layout_marginEnd="5dp"
+                        android:orientation="vertical">
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="@color/surface_card"
+                            app:cardCornerRadius="20dp"
+                            app:cardElevation="2dp"
+                            app:cardUseCompatPadding="true"
+                            app:strokeColor="@color/divider_color"
+                            app:strokeWidth="1dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="10dp"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:orientation="horizontal">
+
+                                    <ImageView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:src="@drawable/money"
+                                        app:tint="@color/icon_tint" />
+
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="10dp"
+                                        android:gravity="center_vertical"
+                                        android:orientation="vertical">
+
+                                        <LinearLayout
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content">
+
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:fontFamily="sans-serif-black"
+                                                android:text="NPR"
+                                                android:textSize="15sp"
+                                                android:textStyle="bold" />
+
+
+                                            <TextView
+                                                android:id="@+id/walletBalance"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginStart="5dp"
+                                                android:fontFamily="sans-serif-black"
+                                                android:text="XXXX.XX"
+                                                android:textColor="@color/text_primary"
+                                                android:textSize="19sp"
+                                                android:textStyle="bold" />
+                                        </LinearLayout>
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:fontFamily="sans-serif-black"
+                                            android:text="Balance"
+                                            android:textSize="14sp"
+                                            android:textStyle="bold" />
+
+                                    </LinearLayout>
+
+                                    <View
+                                        android:layout_width="0dp"
+                                        android:layout_height="0dp"
+                                        android:layout_weight="1" />
+
+                                    <ImageView
+                                        android:id="@+id/btnRetry"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:background="@drawable/circular_bg"
+                                        android:padding="5dp"
+                                        android:src="@drawable/redo" />
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="@color/surface_card"
+                            app:cardCornerRadius="20dp"
+                            app:cardElevation="2dp"
+                            app:cardUseCompatPadding="true"
+                            app:strokeColor="@color/divider_color"
+                            app:strokeWidth="1dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="14dp"
+                                android:orientation="vertical"
+                                android:background="@color/surface_card_alt"
+                                android:padding="10dp"
+                                android:gravity="center">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="You are paying"
+                                    android:textSize="13sp"
+                                    android:textStyle="bold"/>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="2dp"
+                                    android:gravity="center">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="NPR"
+                                        android:textSize="21sp"
+                                        android:textStyle="bold"
+                                        android:textColor="@color/green"
+                                        android:fontFamily="sans-serif-black"/>
+
+                                    <TextView
+                                        android:id="@+id/transferAmount"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="100.00"
+                                        android:textSize="28sp"
+                                        android:textStyle="bold"
+                                        android:layout_marginStart="4dp"
+                                        android:textColor="@color/green"
+                                        android:fontFamily="sans-serif-black"/>
+                                </LinearLayout>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Send Money"
+                                    android:textSize="13sp"
+                                    android:textStyle="bold"
+                                    android:textColor="@color/text_primary"
+                                    android:fontFamily="sans-serif-black"/>
+
+                            </LinearLayout>
+
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="@color/surface_card"
+                            app:cardCornerRadius="20dp"
+                            app:cardElevation="2dp"
+                            app:cardUseCompatPadding="true"
+                            app:strokeColor="@color/divider_color"
+                            app:strokeWidth="1dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:layout_margin="14dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Payment Details"
+                                    android:textStyle="bold"
+                                    android:textColor="@color/text_primary"
+                                    android:textSize="16sp"/>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal"
+                                    android:layout_marginTop="10dp">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="dPay ID"
+                                        android:textStyle="bold"
+                                        android:fontFamily="sans-serif-black"/>
+
+                                    <View
+                                        android:layout_width="0dp"
+                                        android:layout_height="0dp"
+                                        android:layout_weight="1"/>
+
+                                    <TextView
+                                        android:id="@+id/dpayId"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="+9779745678921"
+                                        android:textSize="16sp"
+                                        android:textStyle="bold"
+                                        android:fontFamily="sans-serif-black"
+                                        android:textColor="@color/text_primary"/>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal"
+                                    android:layout_marginTop="10dp">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Receiver Name"
+                                        android:textStyle="bold"
+                                        android:fontFamily="sans-serif-black"/>
+
+                                    <View
+                                        android:layout_width="0dp"
+                                        android:layout_height="0dp"
+                                        android:layout_weight="1"/>
+
+                                    <TextView
+                                        android:id="@+id/receiverName"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Bi**** Sigdel"
+                                        android:textStyle="bold"
+                                        android:textSize="16sp"
+                                        android:fontFamily="sans-serif-black"
+                                        android:textColor="@color/text_primary"/>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal"
+                                    android:layout_marginTop="10dp">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Purpose"
+                                        android:textStyle="bold"
+                                        android:fontFamily="sans-serif-black"/>
+
+                                    <View
+                                        android:layout_width="0dp"
+                                        android:layout_height="0dp"
+                                        android:layout_weight="1"/>
+
+                                    <TextView
+                                        android:id="@+id/purpose"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Bill Sharing"
+                                        android:textStyle="bold"
+                                        android:textSize="16sp"
+                                        android:fontFamily="sans-serif-black"
+                                        android:textColor="@color/text_primary"/>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal"
+                                    android:layout_marginTop="10dp">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Remarks"
+                                        android:textStyle="bold"
+                                        android:fontFamily="sans-serif-black"/>
+
+                                    <View
+                                        android:layout_width="0dp"
+                                        android:layout_height="0dp"
+                                        android:layout_weight="1"/>
+
+                                    <TextView
+                                        android:id="@+id/remarks"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="bill payment"
+                                        android:textStyle="bold"
+                                        android:textSize="16sp"
+                                        android:fontFamily="sans-serif-black"
+                                        android:textColor="@color/text_primary"/>
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="@color/surface_card"
+                            app:cardCornerRadius="20dp"
+                            app:cardElevation="2dp"
+                            app:cardUseCompatPadding="true"
+                            app:strokeColor="@color/divider_color"
+                            app:strokeWidth="1dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:layout_margin="14dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Your Bill"
+                                    android:textStyle="bold"
+                                    android:textColor="@color/text_primary"
+                                    android:textSize="15sp"/>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal"
+                                    android:layout_marginTop="5dp">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Total Paying Amount"
+                                        android:textStyle="bold"
+                                        android:fontFamily="sans-serif-black"/>
+
+                                    <View
+                                        android:layout_width="0dp"
+                                        android:layout_height="0dp"
+                                        android:layout_weight="1"/>
+
+                                    <TextView
+                                        android:id="@+id/payingAmount"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="100.00"
+                                        android:textStyle="bold"
+                                        android:fontFamily="sans-serif-black"
+                                        android:textSize="16sp"
+                                        android:textColor="@color/text_primary"/>
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                        </androidx.cardview.widget.CardView>
+
+
+                    </LinearLayout>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnConfirm"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:minHeight="55dp"
+                        android:text="CONFIRM"
+                        android:textSize="16sp"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:fontFamily="sans-serif-black"
+                        android:background="@drawable/gray_bg"
+                        app:backgroundTint="@color/app_primary"
+                        android:letterSpacing="0.1"/>
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/dimBackground"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#80000000"
+                    android:clickable="true"
+                    android:visibility="gone"/>
+
+                <LinearLayout
+                    android:visibility="gone"
+                    android:id="@+id/payViaContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_gravity="bottom"
+                    android:orientation="vertical">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/surface_card"
+                        app:cardCornerRadius="20dp"
+                        app:cardElevation="2dp"
+                        app:cardUseCompatPadding="true"
+                        app:strokeColor="@color/green"
+                        app:strokeWidth="1dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_margin="10dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:layout_margin="10dp">
+
+                                <LinearLayout
+                                    android:id="@+id/payViaDpayContainer"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center">
+
+                                    <ImageView
+                                        android:layout_width="50dp"
+                                        android:layout_height="50dp"
+                                        android:src="@drawable/wallet_logo"
+                                        android:layout_marginEnd="10dp"/>
+
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical">
+
+                                        <TextView
+                                            android:id="@+id/tvPayViaDpay"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="Pay Via dPay"
+                                            android:textSize="18sp"
+                                            android:textStyle="bold"
+                                            android:fontFamily="sans-serif-black"
+                                            android:letterSpacing="0.01"/>
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="Use dPay Wallet"
+                                            android:textSize="16sp"
+                                            android:textStyle="bold"
+                                            android:fontFamily="sans-serif-black"/>
+
+                                    </LinearLayout>
+
+                                    <View
+                                        android:layout_width="0dp"
+                                        android:layout_height="0dp"
+                                        android:layout_weight="1"/>
+
+                                    <ImageView
+                                        android:visibility="gone"
+                                        android:id="@+id/imgPayViaDpay"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:src="@drawable/tick"/>
+                                </LinearLayout>
+
+
+                                <LinearLayout
+                                    android:id="@+id/linkedBankAccountContainer"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="10dp"
+                                    android:gravity="center">
+
+                                    <ImageView
+                                        android:layout_width="50dp"
+                                        android:layout_height="50dp"
+                                        android:src="@drawable/bank_transfer"
+                                        android:layout_marginEnd="10dp"
+                                        app:tint="@color/app_primary_dark" />
+
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical">
+
+                                        <TextView
+                                            android:id="@+id/tvLinkedBankAccount"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="Linked Bank Account"
+                                            android:textSize="18sp"
+                                            android:textStyle="bold"
+                                            android:fontFamily="sans-serif-black"
+                                            android:letterSpacing="0.01"/>
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="Use your linked bank accounts"
+                                            android:textSize="16sp"
+                                            android:textStyle="bold"
+                                            android:fontFamily="sans-serif"/>
+
+                                    </LinearLayout>
+
+                                    <View
+                                        android:layout_width="0dp"
+                                        android:layout_height="0dp"
+                                        android:layout_weight="1"/>
+
+                                    <ImageView
+                                        android:id="@+id/imgLinkedBankAccount"
+                                        android:visibility="gone"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:src="@drawable/tick"/>
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btnPayVia"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp"
+                                android:minHeight="55dp"
+                                android:text="PAY VIA DPAY"
+                                android:textSize="16sp"
+                                android:textColor="@color/white"
+                                android:textStyle="bold"
+                                android:fontFamily="sans-serif-black"
+                                android:background="@drawable/gray_bg"
+                                app:backgroundTint="@color/app_primary"
+                                app:icon="@drawable/arrow"
+                                app:iconGravity="end"
+                                android:letterSpacing="0.1"/>
+
+                        </LinearLayout>
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/confirmPaymentContainer"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_gravity="bottom"
+                    android:orientation="vertical">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/surface_card"
+                        app:cardCornerRadius="20dp"
+                        app:cardElevation="2dp"
+                        app:cardUseCompatPadding="true"
+                        app:strokeColor="@color/green"
+                        app:strokeWidth="1dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_margin="10dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:layout_margin="10dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Confirm Payment"
+                                    android:textColor="@color/text_primary"
+                                    android:textStyle="bold"
+                                    android:textSize="18sp"
+                                    android:fontFamily="sans-serif-black"/>
+
+                                <com.google.android.material.textfield.TextInputLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                                    app:boxBackgroundMode="outline"
+                                    app:boxStrokeColor="@color/input_stroke"
+                                    app:boxStrokeWidth="2dp"
+                                    app:boxStrokeErrorColor="@color/danger"
+                                    app:boxStrokeWidthFocused="4dp"
+                                    app:boxCornerRadiusTopStart="8dp"
+                                    app:boxCornerRadiusTopEnd="8dp"
+                                    app:boxCornerRadiusBottomStart="8dp"
+                                    app:boxCornerRadiusBottomEnd="8dp"
+                                    android:layout_margin="10dp"
+                                    android:hint="Enter MPIN">
+
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:id="@+id/etEnterMpin"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:inputType="number"
+                                        android:textColor="@color/text_primary"
+                                        android:textSize="20sp"
+                                        android:drawableStart="@drawable/otp"
+                                        android:drawableTint="@color/app_primary"
+                                        android:drawablePadding="10dp"
+                                        android:textStyle="bold"
+                                        android:background="@drawable/gray_bg"
+                                        android:backgroundTint="@color/surface_card_alt"/>
+
+                                </com.google.android.material.textfield.TextInputLayout>
+
+
+                            </LinearLayout>
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btnConfirmPaymentViaDpay"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp"
+                                android:minHeight="55dp"
+                                android:text="CONFIRM"
+                                android:textSize="16sp"
+                                android:textColor="@color/white"
+                                android:textStyle="bold"
+                                android:fontFamily="sans-serif-black"
+                                android:background="@drawable/gray_bg"
+                                app:backgroundTint="@color/app_primary"
+                                app:icon="@drawable/arrow"
+                                app:iconGravity="end"
+                                android:letterSpacing="0.1"/>
+
+                        </LinearLayout>
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                </LinearLayout>
+
+            </FrameLayout>
+
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>

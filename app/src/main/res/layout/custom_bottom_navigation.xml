@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/screen_background"
+    tools:context=".MainActivity">
+
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:backgroundTint="@color/bottom_nav_background"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <com.google.android.material.bottomappbar.BottomAppBar
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:id="@+id/bottomAppBar"
+            android:layout_gravity="bottom"
+            app:backgroundTint="@color/bottom_nav_background"
+            app:fabCradleMargin="15dp"
+            app:fabCradleRoundedCornerRadius="30dp"
+            app:fabAlignmentMode="center"
+            app:removeEmbeddedFabElevation="true"
+            app:fabAnchorMode="cradle"
+            app:fabCradleVerticalOffset="0dp">
+
+            <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/bottomNavigationView"
+                app:elevation="0dp"
+                app:itemIconSize="30dp"
+                app:itemIconTint="@color/bottom_nav_item"
+                app:itemTextColor="@color/bottom_nav_item"
+                app:labelVisibilityMode="labeled"
+                android:background="@color/bottom_nav_background"
+                app:menu="@menu/nav_items"/>
+
+        </com.google.android.material.bottomappbar.BottomAppBar>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/scan_pay"
+            app:layout_anchor="@id/bottomAppBar"
+            app:maxImageSize="40dp"
+            android:layout_marginBottom="60dp"
+            app:backgroundTint="@color/surface_card"
+            app:tint="@color/app_primary"/>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,21 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="40dp"
+    android:height="40dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <!-- Even smaller green circle -->
+    <path
+        android:fillColor="#2D9211"
+        android:pathData="M19,12C19,15.866 15.866,19 12,19C8.134,19 5,15.866 5,12C5,8.134 8,5 12,5C15.866,5 19,8.134 19,12Z" />
+
+    <!-- White pen stroke only (thin) -->
+    <path
+        android:fillColor="@android:color/transparent"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="1"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:pathData="M8.905,13.475C8.94,13.299 8.958,13.21 8.99,13.128C9.019,13.055 9.056,12.985 9.101,12.921C9.152,12.848 9.215,12.785 9.343,12.657L13.5,8.5C14.052,7.948 14.948,7.948 15.5,8.5C16.052,9.052 16.052,9.948 15.5,10.5L11.343,14.657C11.215,14.785 11.152,14.848 11.079,14.899C11.015,14.944 10.945,14.981 10.872,15.01C10.79,15.042 10.701,15.06 10.525,15.095L8.5,15.5L8.905,13.475Z" />
+
+</vector>

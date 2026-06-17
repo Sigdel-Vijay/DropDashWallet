@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="@color/screen_background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".SetUpMpinActivity">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter MPIN"
+        app:boxBackgroundColor="@color/input_background"
+        app:boxStrokeColor="@color/input_stroke"
+        app:hintTextColor="@color/text_secondary">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etMpin"
+            android:inputType="numberPassword"
+            android:maxLength="6"
+            android:textColor="@color/text_primary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Confirm MPIN"
+        app:boxBackgroundColor="@color/input_background"
+        app:boxStrokeColor="@color/input_stroke"
+        app:hintTextColor="@color/text_secondary"
+        android:layout_marginTop="16dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etConfirmMpin"
+            android:inputType="numberPassword"
+            android:maxLength="6"
+            android:textColor="@color/text_primary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnSetMpin"
+        android:text="Set MPIN"
+        android:textColor="@color/on_primary"
+        app:backgroundTint="@color/app_primary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"/>
+
+</LinearLayout>

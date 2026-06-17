@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="360dp"
+    android:height="260dp"
+    android:viewportWidth="360"
+    android:viewportHeight="260">
+
+    <!-- Green top with wave bottom -->
+    <path
+        android:fillColor="@color/app_primary"
+        android:pathData="
+            M0,0
+            H360
+            V180
+            C300,260 220,240 180,240
+            C140,240 60,220 0,200
+            Z"/>
+</vector>

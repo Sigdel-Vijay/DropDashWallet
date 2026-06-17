@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <!-- Primary colors -->
+    <color name="dd_wallet_primary">#2D9211</color>
+    <color name="dd_wallet_primary_variant">#1FB124</color>
+    <color name="dd_wallet_accent">#0B8011</color>
+
+    <color name="rectangular_bg">#C6C3C3</color>
+    <color name="st_color">#A8E6A3</color>
+
+    <!-- Backgrounds -->
+    <color name="dd_wallet_bg">#FEFFFE</color> <!-- Main activity background -->
+    <color name="dd_wallet_input_bg">#F0F0F0</color> <!-- EditText background -->
+    <color name="dd_wallet_stroke">#888888</color> <!-- Input stroke -->
+    <color name="dd_wallet_error">#E00C0C</color> <!-- Error stroke -->
+
+    <!-- Text colors -->
+    <color name="dd_wallet_text">#000000</color>
+    <color name="dd_wallet_text_primary">#1FB124</color> <!-- Amount -->
+    <color name="dd_wallet_button_text">#FFFFFF</color>
+</resources>

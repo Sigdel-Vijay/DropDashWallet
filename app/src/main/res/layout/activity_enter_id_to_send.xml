@@ -1,0 +1,423 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/screen_background"
+    android:orientation="vertical"
+    tools:context=".EnterIdToSendActivity">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bottom_curved_bg">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:layout_marginTop="15dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="10dp">
+
+                            <ImageButton
+                                android:id="@+id/btnBack"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="5dp"
+                                android:background="@android:color/transparent"
+                                android:padding="5dp"
+                                android:src="@drawable/arrow"
+                                app:tint="@color/white" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="25dp"
+                                android:fontFamily="sans-serif-black"
+                                android:text="Send Money"
+                                android:textColor="@color/white"
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="60dp"
+                        android:layout_marginEnd="5dp"
+                        android:orientation="vertical">
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="@color/surface_card"
+                            app:cardCornerRadius="20dp"
+                            app:cardElevation="2dp"
+                            app:cardUseCompatPadding="true"
+                            app:strokeColor="@color/divider_color"
+                            app:strokeWidth="1dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="10dp"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:orientation="horizontal">
+
+                                    <ImageView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:src="@drawable/money"
+                                        app:tint="@color/icon_tint" />
+
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="10dp"
+                                        android:gravity="center_vertical"
+                                        android:orientation="vertical">
+
+                                        <LinearLayout
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content">
+
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:fontFamily="sans-serif-black"
+                                                android:text="NPR"
+                                                android:textColor="@color/text_primary"
+                                                android:textSize="15sp"
+                                                android:textStyle="bold" />
+
+
+                                            <TextView
+                                                android:id="@+id/walletBalance"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginStart="5dp"
+                                                android:fontFamily="sans-serif-black"
+                                                android:text="XXXX.XX"
+                                                android:textColor="@color/text_primary"
+                                                android:textSize="19sp"
+                                                android:textStyle="bold" />
+                                        </LinearLayout>
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:fontFamily="sans-serif-black"
+                                            android:text="Balance"
+                                            android:textColor="@color/text_secondary"
+                                            android:textSize="14sp"
+                                            android:textStyle="bold" />
+
+                                    </LinearLayout>
+
+                                    <View
+                                        android:layout_width="0dp"
+                                        android:layout_height="0dp"
+                                        android:layout_weight="1" />
+
+                                    <ImageView
+                                        android:id="@+id/btnRetry"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:background="@drawable/circular_bg"
+                                        android:padding="5dp"
+                                        android:src="@drawable/redo" />
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="@color/surface_card"
+                            app:cardCornerRadius="20dp"
+                            app:cardElevation="2dp"
+                            app:cardUseCompatPadding="true"
+                            app:strokeColor="@color/divider_color"
+                            app:strokeWidth="1dp">
+
+                            <LinearLayout
+                                android:id="@+id/recentTransfersContainer"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginEnd="10dp"
+                                android:layout_marginBottom="20dp"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="sans-serif-black"
+                                    android:letterSpacing="0.05"
+                                    android:text="Recent Fund Transfers"
+                                    android:textColor="@color/text_primary"
+                                    android:textSize="18sp"
+                                    android:textStyle="bold" />
+
+                                <androidx.recyclerview.widget.RecyclerView
+                                    android:id="@+id/recentTransfersRecyclerView"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:clipToPadding="false"
+                                    android:overScrollMode="never"
+                                    android:background="@color/surface_card"/>
+
+
+                            </LinearLayout>
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="@color/surface_card"
+                            app:cardCornerRadius="20dp"
+                            app:cardElevation="2dp"
+                            app:cardUseCompatPadding="true"
+                            app:strokeColor="@color/divider_color"
+                            app:strokeWidth="1dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:layout_margin="15dp">
+
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical"
+                                        android:gravity="center">
+
+                                        <LinearLayout
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="center"
+                                            android:id="@+id/selectionMobileContainer">
+
+                                            <ImageView
+                                                android:id="@+id/selectionMobileIcon"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:src="@drawable/mobile_icon"
+                                                app:tint="@color/icon_tint"/>
+
+                                            <TextView
+                                                android:id="@+id/selectionMobile"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="Mobile Number"
+                                                android:textSize="16sp"
+                                                android:textStyle="bold"
+                                                android:textColor="@color/text_primary"
+                                                android:layout_marginStart="1dp"/>
+
+                                        </LinearLayout>
+
+                                        <View
+                                            android:id="@+id/selectionMobileView"
+                                            android:layout_width="170dp"
+                                            android:layout_height="3dp"
+                                            android:background="@color/text_secondary"
+                                            android:layout_marginTop="3dp"/>
+
+
+                                    </LinearLayout>
+
+                                    <View
+                                        android:layout_width="0dp"
+                                        android:layout_height="0dp"
+                                        android:layout_weight="1"/>
+
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical"
+                                        android:gravity="center">
+
+                                        <LinearLayout
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="center"
+                                            android:id="@+id/selectionEmailContainer">
+
+                                            <ImageView
+                                                android:id="@+id/selectionEmailIcon"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:src="@drawable/email_icon"
+                                                app:tint="@color/icon_tint"/>
+
+                                            <TextView
+                                                android:id="@+id/selectionEmail"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="Email Address"
+                                                android:textSize="16sp"
+                                                android:textStyle="bold"
+                                                android:textColor="@color/text_primary"
+                                                android:layout_marginStart="1dp"/>
+
+                                        </LinearLayout>
+
+                                        <View
+                                            android:layout_width="170dp"
+                                            android:layout_height="3dp"
+                                            android:background="@color/text_secondary"
+                                            android:layout_marginTop="3dp"
+                                            android:id="@+id/selectionEmailView"/>
+
+
+                                    </LinearLayout>
+
+                                </LinearLayout>
+
+                                <com.google.android.material.textfield.TextInputLayout
+                                    android:id="@+id/mobileNumberContainer"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                                    app:boxBackgroundMode="outline"
+                                    app:boxStrokeColor="@color/input_stroke"
+                                    app:boxStrokeWidth="2dp"
+                                    app:boxStrokeErrorColor="@color/danger"
+                                    app:boxStrokeWidthFocused="4dp"
+                                    app:boxCornerRadiusTopStart="8dp"
+                                    app:boxCornerRadiusTopEnd="8dp"
+                                    app:boxCornerRadiusBottomStart="8dp"
+                                    app:boxCornerRadiusBottomEnd="8dp"
+                                    android:layout_margin="10dp"
+                                    android:hint="Mobile Number">
+
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:id="@+id/etMobileNumber"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:inputType="number"
+                                        android:textColor="@color/text_primary"
+                                        android:textSize="20sp"
+                                        android:drawableStart="@drawable/mobile_icon"
+                                        android:drawableEnd="@drawable/people"
+                                        android:drawableTint="@color/app_primary"
+                                        android:drawablePadding="10dp"
+                                        android:textStyle="bold"
+                                        android:background="@drawable/gray_bg"
+                                        android:backgroundTint="@color/input_background"/>
+
+                                </com.google.android.material.textfield.TextInputLayout>
+
+                                <com.google.android.material.textfield.TextInputLayout
+                                    android:id="@+id/emailAddressContainer"
+                                    android:visibility="gone"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                                    app:boxBackgroundMode="outline"
+                                    app:boxStrokeColor="@color/input_stroke"
+                                    app:boxStrokeWidth="2dp"
+                                    app:boxStrokeErrorColor="@color/danger"
+                                    app:boxStrokeWidthFocused="4dp"
+                                    app:boxCornerRadiusTopStart="8dp"
+                                    app:boxCornerRadiusTopEnd="8dp"
+                                    app:boxCornerRadiusBottomStart="8dp"
+                                    app:boxCornerRadiusBottomEnd="8dp"
+                                    android:layout_margin="10dp"
+                                    android:hint="Email Address">
+
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:id="@+id/etEmailAddress"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:inputType="textEmailAddress"
+                                        android:textColor="@color/text_primary"
+                                        android:textSize="20sp"
+                                        android:drawableStart="@drawable/email_icon"
+                                        android:drawableEnd="@drawable/people"
+                                        android:drawableTint="@color/app_primary"
+                                        android:drawablePadding="10dp"
+                                        android:textStyle="bold"
+                                        android:background="@drawable/gray_bg"
+                                        android:backgroundTint="@color/input_background"/>
+
+                                </com.google.android.material.textfield.TextInputLayout>
+
+                                <com.google.android.material.button.MaterialButton
+                                    android:id="@+id/btnProceed"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="10dp"
+                                    android:text="PROCEED"
+                                    android:textSize="16sp"
+                                    android:textColor="@color/white"
+                                    android:textStyle="bold"
+                                    android:fontFamily="sans-serif-black"
+                                    android:background="@drawable/gray_bg"
+                                    app:backgroundTint="@color/app_primary"
+                                    android:letterSpacing="0.1"/>
+
+                            </LinearLayout>
+
+                        </androidx.cardview.widget.CardView>
+
+
+                    </LinearLayout>
+                </LinearLayout>
+            </FrameLayout>
+
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>
