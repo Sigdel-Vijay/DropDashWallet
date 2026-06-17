@@ -3,8 +3,6 @@ plugins {
     id 'maven-publish'
 }
 
-apply plugin: 'maven-publish'
-
 group = "com.github.Sigdel-Vijay"
 version = "1.0.0"
 
@@ -22,14 +20,17 @@ android {
             minifyEnabled false
         }
     }
+
+    publishing {
+        singleVariant("release")
+    }
 }
 
 afterEvaluate {
     publishing {
         publications {
             release(MavenPublication) {
-                from components.findByName("release")
-
+                from components.release
                 groupId = "com.github.Sigdel-Vijay"
                 artifactId = "dropdashwalletsdk"
                 version = "1.0.0"
