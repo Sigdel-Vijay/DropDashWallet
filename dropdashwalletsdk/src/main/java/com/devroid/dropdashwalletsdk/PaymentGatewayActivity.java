@@ -247,38 +247,43 @@ public class PaymentGatewayActivity extends AppCompatActivity {
                             if ("SUCCESS".equals(status)) {
                                 showResultDialog(true, response.getString("transactionId"), null);
                             } else {
-                                String error = response.optString("error", "Payment Failed");
-                                showResultDialog(false, null, error);
+                                // Extract detailed error message from response body
+                                String errorMsg = response.optString("error", response.optString("message", "Payment Failed"));
+                                showResultDialog(false, null, errorMsg);
                             }
                         } catch (Exception e) {
-                            showResultDialog(false, null, "Server error: " + e.getMessage());
+                            showResultDialog(false, null, "Response parsing error: " + e.getMessage());
                         }
                     },
                     error -> {
                         if (!isActivitySafe()) return;
 
-                        // Railway failed -> switch to Render
-                        if (allowFallback && url.contains("railway.app")) {
+                        boolean isConnectionIssue = error instanceof TimeoutError ||
+                                                    error instanceof NoConnectionError ||
+                                                    error instanceof NetworkError;
+
+                        // ONLY switch to Render if Railway has a connection issue (timeout/sleeping)
+                        // Do not switch if it's a logical server error (4xx/5xx with body)
+                        if (allowFallback && url.contains("railway.app") && 
+                            (error instanceof TimeoutError || error instanceof NoConnectionError)) {
                             isRequestRunning = false;
-                            Toast.makeText(this, "Railway unavailable. Switching server...", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(this, "Railway connection issue. Trying fallback server...", Toast.LENGTH_SHORT).show();
                             sendPaymentRequest(RENDER_URL, walletId, mpin, clientTxnId, false);
                             return;
                         }
 
-                        // Handle Render cold start (Waking server)
-                        if (error instanceof TimeoutError || error instanceof NoConnectionError || error instanceof NetworkError) {
-                            if (retryCount < MAX_RETRIES) {
-                                retryCount++;
-                                isRequestRunning = false;
-                                Toast.makeText(this, "Waking secure server... (" + retryCount + "/" + MAX_RETRIES + ")", Toast.LENGTH_SHORT).show();
-                                
-                                retryHandler.postDelayed(() -> {
-                                    if (isActivitySafe()) {
-                                        sendPaymentToServer(walletId, mpin, clientTxnId);
-                                    }
-                                }, 4000);
-                                return;
-                            }
+                        // Handle Waking/Retry for the current URL if it's a connection issue
+                        if (isConnectionIssue && retryCount < MAX_RETRIES) {
+                            retryCount++;
+                            isRequestRunning = false;
+                            Toast.makeText(this, "Waking secure server... (" + retryCount + "/" + MAX_RETRIES + ")", Toast.LENGTH_SHORT).show();
+
+                            retryHandler.postDelayed(() -> {
+                                if (isActivitySafe()) {
+                                    sendPaymentRequest(url, walletId, mpin, clientTxnId, allowFallback);
+                                }
+                            }, 4000);
+                            return;
                         }
 
                         retryCount = 0;
@@ -299,18 +304,23 @@ public class PaymentGatewayActivity extends AppCompatActivity {
     }
 
     private String getVolleyErrorMessage(com.android.volley.VolleyError error) {
-        try {
-            if (error.networkResponse != null && error.networkResponse.data != null) {
+        if (error.networkResponse != null && error.networkResponse.data != null) {
+            try {
                 String responseBody = new String(error.networkResponse.data, "UTF-8");
                 JSONObject data = new JSONObject(responseBody);
-                return data.optString("error", "Payment Failed");
+                // Priority 1: Backend 'error' field
+                if (data.has("error")) return data.getString("error");
+                // Priority 2: Backend 'message' field
+                if (data.has("message")) return data.getString("message");
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+            // Fallback: HTTP Status Code
+            return "Server Error (" + error.networkResponse.statusCode + ")";
         }
         if (error instanceof TimeoutError) return "Server timeout. Please try again.";
-        if (error instanceof NoConnectionError) return "No internet connection.";
-        return "Payment failed. Please try again.";
+        if (error instanceof NoConnectionError || error instanceof NetworkError) return "No internet connection or server unavailable.";
+        return "An unexpected error occurred. Please try again.";
     }
 
     private void resetPaymentState() {
